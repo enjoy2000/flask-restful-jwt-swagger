@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask-restful = "*"
+flask-migrate = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"
+python-dotenv = "*"
+passlib = "*"
+tox = "*"
+Flask = "*"
+Flask-SQLAlchemy = "*"
+Flask-JWT-Extended = "*"
+pytest-factoryboy = "*"
+"boto3" = "*"
+gunicorn = "*"
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+pytest-factoryboy = "*"
+faker = "*"
+pytest-flask = "*"
+
+[requires]
+python_version = "3.7"
