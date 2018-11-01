@@ -7,7 +7,7 @@ matrix:
       sudo: true
 install:
   - pip install -U pipenv
-  - pipenv sync --dev --system
+  - pipenv sync --dev
 script:
   - flake8
   - pytest
