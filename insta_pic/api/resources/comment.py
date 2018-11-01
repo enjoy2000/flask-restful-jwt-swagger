@@ -70,4 +70,3 @@ class MyPostCommentList(Resource):
         schema = CommentSchema(many=True)
         query = Comment.query.filter(Comment.post.has(created_by_id=current_user))
         return paginate(query, schema)
-
