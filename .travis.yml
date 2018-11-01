@@ -1,13 +1,20 @@
 language: python
+
 matrix:
   include:
-    - python: "3.6"
-    - python: "3.7"
-      dist: xenial
-      sudo: true
+  - python: "3.6"
+  - python: "3.7"
+    dist: xenial
+    sudo: true
+
 install:
-  - pip install -U pipenv
-  - pipenv sync --dev
+- pip install -U pipenv
+- pipenv sync --dev
+- pip install codecov
+
 script:
-  - flake8
-  - pytest
+- flake8
+- pytest --cov=insta_pic
+
+after_success:
+- codecov
