@@ -2,6 +2,7 @@
 
 Use env var to override
 """
+import datetime
 import os
 
 DEBUG = os.getenv('DEBUG', True)
@@ -13,3 +14,4 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 JWT_BLACKLIST_ENABLED = True
 JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
 AWS_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME', 'insta-pic')
+JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(days=1)

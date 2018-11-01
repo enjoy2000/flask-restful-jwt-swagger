@@ -1,4 +1,5 @@
 import os
+from uuid import uuid4
 
 from flask import request, current_app
 from flask_restful import Resource
@@ -61,12 +62,17 @@ class PostList(Resource):
         if extension not in allowed_extensions:
             return {'msg': 'File type is not supported'}, 400
 
-        file_path = f'uploads/photos/{photo.filename}'
-        s3.upload_fileobj(photo, current_app.config['AWS_BUCKET_NAME'], f'uploads/photos/{photo.filename}')
+        file_path = f'uploads/photos/{uuid4()}.{extension}'
+        bucket = current_app.config['AWS_BUCKET_NAME']
+        s3.upload_fileobj(photo, bucket, file_path, ExtraArgs={'ACL': 'public-read'})
+
+        # for the simplicity we are using public-acl here
+        # TODO use private object and create signed url on schema dump
+        absolute_file_url = f'https://s3-ap-southeast-1.amazonaws.com/{bucket}/{file_path}'
 
         schema = PostSchema()
         post, _ = schema.load({
-            'photo': file_path,
+            'photo': absolute_file_url,
             'description': description
         })
 
