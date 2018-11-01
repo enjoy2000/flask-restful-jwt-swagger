@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 from insta_pic import auth, api
 from insta_pic.extensions import db, jwt, migrate
@@ -12,6 +12,10 @@ def create_app(config=None, testing=False, cli=False):
     configure_app(app, testing)
     configure_extensions(app, cli)
     register_blueprints(app)
+
+    @app.errorhandler(Exception)
+    def error_handler(e):
+        return jsonify({'msg': str(e)}), 500
 
     return app
 
