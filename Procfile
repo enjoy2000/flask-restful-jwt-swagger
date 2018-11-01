@@ -1,2 +1,2 @@
 web: gunicorn insta_pic.wsgi:app
-release: insta_pic init
+release: python insta_pic/manage.py init

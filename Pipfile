@@ -17,6 +17,7 @@ Flask-JWT-Extended = "*"
 pytest-factoryboy = "*"
 "boto3" = "*"
 gunicorn = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 pytest = "*"
